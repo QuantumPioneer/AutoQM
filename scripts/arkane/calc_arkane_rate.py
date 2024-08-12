@@ -145,7 +145,7 @@ def calc_rate_coefficient(
             freq_level,
             energy_software=energy_software,
             freq_software=freq_software,
-            use_atom_corrections=True,
+            use_atom_corrections=False,
             use_bond_corrections=False,
             bac_type="p",
             scr_dir=scr_dir,
@@ -167,13 +167,17 @@ def calc_rate_coefficient(
             spc_p2 = Species().from_smiles(row["p2smi"])
             spc_p2.conformer = p2
 
-            neg_frequency = row["neg_freq"]
+            neg_frequency = row["neg_freq"] * freq_scale
             neg_frequency = (neg_frequency, "cm^-1")
 
+            E0_reactants  =  (r1.E0.value + r2.E0.value, "kJ/mol")
+            E0_products  =  (p1.E0.value + p2.E0.value, "kJ/mol")
+            E0_transitionstate  =  ts.E0
+            
             spc_ts = TransitionState(
                 conformer=ts,
                 frequency=neg_frequency,
-                tunneling=Eckart(frequency=None, E0_reac=None, E0_TS=None, E0_prod=None),
+                tunneling=Eckart(frequency=neg_frequency, E0_reac=E0_reactants, E0_TS=E0_transitionstate, E0_prod=E0_products),
             )
 
             rxn = Reaction(
