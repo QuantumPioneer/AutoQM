@@ -219,7 +219,6 @@ def get_rmg_conformer(
             * 100
             * zpe_scale_factor
         )
-        scaled_zpe = 0
     else:
         scaled_zpe = 0
 
