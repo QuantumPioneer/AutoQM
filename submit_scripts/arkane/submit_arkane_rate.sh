@@ -15,7 +15,7 @@ if [ $SLURM_ARRAY_TASK_ID -eq 0 ]; then
         --energy_software orca \
         --freq_level "qgwb97xd/def2svp" \
         --freq_software gaussian \
-        --freq_scale 0.9914 \
+        --freq_scale 0.986 \
         --n_jobs 40 \
         --save_path /home/gridsan/hwpang/RMG_shared/Projects/Hao-Wei-Oscar-Yunsie/HAbs_calculations/arkane_results/data/quantum_green_ts_data_24march12b_dft_opted_dlpno_sp_rates.csv \
         --scratch_dir $scratch_dir
@@ -28,7 +28,7 @@ elif [ $SLURM_ARRAY_TASK_ID -eq 1 ]; then
         --energy_software gaussian \
         --freq_level "qgwb97xd/def2svp" \
         --freq_software gaussian \
-        --freq_scale 0.9914 \
+        --freq_scale 0.986 \
         --n_jobs 40 \
         --save_path /home/gridsan/hwpang/RMG_shared/Projects/Hao-Wei-Oscar-Yunsie/HAbs_calculations/arkane_results/data/quantum_green_ts_data_24march12b_dft_opted_dft_sp_rates.csv \
         --scratch_dir $scratch_dir
